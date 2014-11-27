@@ -19,15 +19,16 @@ public class PropertyUtils {
 			List<AppProperties> list = propsDAO.getAppProperties("Points",	"points-config.properties");
 
 			properties = new Properties();
-			for(AppProperties props : list){
-				System.out.println(props);
-				properties.put(props.getKey(), props.getValue());
+			if(!list.isEmpty()){
+				for(AppProperties props : list){
+					properties.put(props.getKey(), props.getValue());
+				}
 			}
+			//context.close();
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
-		//context.close(); 
-
+		 
 		return properties;
 	}
 }
