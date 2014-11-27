@@ -1,18 +1,24 @@
 package com.dev.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-@Entity
+@Entity @IdClass(AppPropertiesID.class)
 @Table(name="\"AppProperties\"")
-public class AppProperties {
+public class AppProperties implements Serializable {
+
+	private static final long serialVersionUID = -7701151865527208944L;
 
 	@Id
 	@Column(name="\"applicationCode\"")
 	private String applicationCode;
 	
+	@Id
 	@Column(name="fileName")
 	private String fileName;
 	
@@ -49,6 +55,6 @@ public class AppProperties {
 	
 	@Override
 	public String toString() {
-		return this.applicationCode + " " + this.fileName + " [" + this.key + ": " + this.value + "]";
+		return "AppCode: " + this.applicationCode + ", File: " + this.fileName + ", [" + this.key + ": " + this.value + "]";
 	}
 }
