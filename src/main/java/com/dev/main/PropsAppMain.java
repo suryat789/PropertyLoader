@@ -1,24 +1,17 @@
 package com.dev.main;
 
-import java.util.List;
+import java.util.Properties;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.dev.dao.AppPropertiesDAO;
-import com.dev.entity.AppProperties;
+import com.dev.utils.PropertyUtils;
 
 public class PropsAppMain {
 
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-
-		AppPropertiesDAO propsDAO = context.getBean(AppPropertiesDAO.class);
-
-		List<AppProperties> list = propsDAO.getAppProperties("Points",	"SomeFile1");
-
-		for(AppProperties p : list){
-			System.out.println("Property List::"+p);
+		
+		Properties properties = PropertyUtils.getAppProperties("Points",	"points-config.properties");
+		
+		for (Object obj : properties.keySet()) {
+			System.out.println(obj + " : " + properties.getProperty(obj.toString()));
 		}
-		context.close();   
 	}
 }

@@ -2,6 +2,7 @@ package com.dev.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -14,9 +15,15 @@ public class AppPropertiesDAOImpl implements AppPropertiesDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<AppProperties> getAppProperties(String strAppCode, String strFIleNme) {
+
 		Session session = this.sessionFactory.openSession();
-		List<AppProperties> propsList = session.createQuery("from AppProperties").list();
+		List<AppProperties> propsList = null; 
+		Query query = session.createQuery("from AppProperties where applicationCode = :applicationcode and filename = :filename");
+		query.setParameter("applicationcode", strAppCode);
+		query.setParameter("filename", strFIleNme);
+		propsList = query.list();
 		session.close();
 		return propsList;
 	}
