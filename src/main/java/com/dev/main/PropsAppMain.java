@@ -8,12 +8,14 @@ public class PropsAppMain {
 
 	public static void main(String[] args) {
 		
-		Properties properties = PropertyUtils.getAppProperties("Points", "points-config.properties");
+		Properties properties = PropertyUtils.getAppProperties("AppCode", "app-config.properties");
 		
-		if(properties != null && !properties.isEmpty()){
+		if(!properties.isEmpty()){
 			for (Object obj : properties.keySet()) {
 				System.out.println(obj + " = " + properties.getProperty((String)obj));
 			}
+		} else {
+			System.out.println("Property Not Found.");
 		}
 	}
 }
