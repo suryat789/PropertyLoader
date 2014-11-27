@@ -16,15 +16,14 @@ public class PropertyUtils {
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml")) {
 			AppPropertiesDAO propsDAO = context.getBean(AppPropertiesDAO.class);
 
-			List<AppProperties> list = propsDAO.getAppProperties("Points",	"points-config.properties");
+			List<AppProperties> list = propsDAO.getAppProperties(strAppCode, strFileName);
 
-			properties = new Properties();
 			if(!list.isEmpty()){
+				properties = new Properties();
 				for(AppProperties props : list){
 					properties.put(props.getKey(), props.getValue());
 				}
 			}
-			//context.close();
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}

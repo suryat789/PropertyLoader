@@ -16,13 +16,13 @@ public class AppPropertiesDAOImpl implements AppPropertiesDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AppProperties> getAppProperties(String strAppCode, String strFIleNme) {
+	public List<AppProperties> getAppProperties(String strAppCode, String strFileNme) {
 
 		Session session = this.sessionFactory.openSession();
 		List<AppProperties> propsList = null; 
 		Query query = session.createQuery("from AppProperties where applicationCode = :applicationcode and filename = :filename");
 		query.setParameter("applicationcode", strAppCode);
-		query.setParameter("filename", strFIleNme);
+		query.setParameter("filename", strFileNme);
 		propsList = query.list();
 		session.close();
 		return propsList;
