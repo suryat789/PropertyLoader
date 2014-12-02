@@ -9,13 +9,13 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity @IdClass(AppPropertiesID.class)
-@Table(name="\"AppProperties\"")
+@Table(name="AppProperties")
 public class AppProperties implements Serializable {
 
 	private static final long serialVersionUID = -7701151865527208944L;
 
 	@Id
-	@Column(name="\"applicationCode\"")
+	@Column(name="applicationCode")
 	private String applicationCode;
 	
 	@Id
