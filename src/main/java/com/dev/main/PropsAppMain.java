@@ -10,7 +10,7 @@ public class PropsAppMain {
 		
 		Properties properties = PropertyUtils.getAppProperties("AppCode", "app-config.properties");
 		
-		if(!properties.isEmpty()){
+		if(properties != null && !properties.isEmpty()){
 			for (Object obj : properties.keySet()) {
 				System.out.println(obj + " = " + properties.getProperty((String)obj));
 			}
